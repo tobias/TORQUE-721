@@ -60,11 +60,17 @@ class Myapp < Padrino::Application
   #
 
   get '/' do
-    my = inject('service:MyService')
-    if my.nil? then
-      "my service is nil"
-    else
-      "my service is #{my}"
-    end
+    service = inject('service:MyService')
+    service_from_foo = Foo.new.service
+    queue = inject('/queue/foo')
+    queue_from_foo = Foo.new.queue
+    %Q{
+<pre>
+    service is #{service}
+    service_from_foo is #{service_from_foo}
+    queue is #{queue}
+    queue_from_foo is #{queue_from_foo}
+</pre>
+}
   end
 end

@@ -1,2 +1,5 @@
 services:
   MyService:
+
+queues:
+  /queue/foo:
